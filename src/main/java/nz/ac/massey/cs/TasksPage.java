@@ -47,10 +47,10 @@ public class TasksPage extends WebPage {
 					protected void populateItem(ListItem item) {
 
 						item.add(new Label("name"));
+						item.add(new Label("dueDate"));
 						item.add(new Label("projectTitle"));
 						item.add(new Label("description"));
-						item.add(new Label("dueDate"));
-						
+
 						item.add(new AjaxCheckBox("completed") {
 							@Override
 							protected void onUpdate(AjaxRequestTarget ajaxRequestTarget) {
@@ -60,6 +60,33 @@ public class TasksPage extends WebPage {
 				};
 
 		add(new Link<Void>("selectAll") {
+			@Override
+			public void onClick() {
+				for(Task t: tasks) {
+					t.setComplete(true);
+				}
+
+			}
+		});
+		add(new Link<Void>("completed") {
+			@Override
+			public void onClick() {
+				for(Task t: tasks) {
+					t.setComplete(true);
+				}
+
+			}
+		});
+		add(new Link<Void>("activeTasks") {
+			@Override
+			public void onClick() {
+				for(Task t: tasks) {
+					t.setActiveTasks(true);
+				}
+
+			}
+		});
+		add(new Link<Void>("allTasks") {
 			@Override
 			public void onClick() {
 				for(Task t: tasks) {

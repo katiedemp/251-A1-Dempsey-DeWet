@@ -24,5 +24,5 @@ public class TaskList implements Serializable {
     public void removeTask(Task task) {
         collection.remove(task);
     }
-
+    
 }

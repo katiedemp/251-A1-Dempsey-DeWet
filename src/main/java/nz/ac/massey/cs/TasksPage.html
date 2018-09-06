@@ -49,11 +49,62 @@
 	        width: 100%;
 	    }
 	}
+	/* Dropdown Button */
+	.dropbtn {
+	    background-color: #f1f1f1;
+	    color: black;
+	    padding: 12px;
+	    font-size: 12px;
+	    border: none;
+	    cursor: pointer;
+	}
+
+	/* Dropdown button on hover & focus */
+	.dropbtn:hover, .dropbtn:focus {
+	    background-color: #ddd;
+	}
+
+	/* The container - needed to position the dropdown content */
+	.dropdown {
+	    position: relative;
+	    display: inline-block;
+	}
+
+	/* Dropdown Content (Hidden by Default) */
+	.dropdown-content {
+	    display: none;
+	    position: absolute;
+	    background-color: #f6f6f6;
+	    min-width: 230px;
+	    border: 1px solid #ddd;
+	    z-index: 1;
+	}
+
+	/* Links inside the dropdown */
+	.dropdown-content a {
+	    color: black;
+	    padding: 12px 16px;
+	    text-decoration: none;
+	    display: block;
+	}
+
+	/* Change color of dropdown links on hover */
+	.dropdown-content a:hover {background-color: #f1f1f1}
+
+	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+	.show {display:block;}
+
 	</Style>
+	<script>
+	/* When the user clicks on the button,
+	toggle between hiding and showing the dropdown content */
+	function myFunction() {
+			document.getElementById("myDropdown").classList.toggle("show");
+	}
+	</script>
 </head>
 
 <body>
-
 <div id="body">
 	<div class="header">
 		<h1>Todos</h1>
@@ -73,6 +124,11 @@
 						type="text"
 						style="width: 15em"
 				/></div>
+				<div><label>Due Date </label><input
+						wicket:id="dueDate"
+						type="text"
+						style="width: 15em"
+				/></div>
 				<div><label>Project Title </label><input
 						wicket:id="projectTitle"
 						type="text"
@@ -80,12 +136,8 @@
 				/></div>
 				<div><label>Description </label><input
 						wicket:id="description"
-						type="text" style="width: 30em"
-				/></div>
-				<div><label>Due Date </label><input
-						wicket:id="dueDate"
 						type="text"
-						style="width: 15em"
+						style="width: 30em"
 				/></div>
 				<div><input type="submit" value="Add" /></div>
 			</form>
@@ -95,17 +147,24 @@
 
 			<h2>Task List</h2>
 
+			<div class="dropdown">
+				<button type="button" onclick="myFunction()" class="dropbtn"> Filter </button>
+				<div id="myDropdown" class="dropdown-content">
+					<a href="#" wicket:id="completed">Completed</a>
+					<a href="#" wicket:id="active">Active</a>
+					<a href="#" wicket:id="allTasks">All Tasks</a>
+				</div>
+			</div>
+
 			<form wicket:id="listForm">
-
-
 			<table>
 				<tr wicket:id="task_list">
 					<td>
 						<input class="toggle" type="checkbox" wicket:id="completed" />
 						<span wicket:id="name">Name</span>
-						<span wicket:id="projectTitle">projectTitle</span>
+						<span wicket:id="dueDate">Name</span>
+						<span wicket:id="projectTitle">Project Title</span>
 						<span wicket:id="description">Description</span>
-						<span wicket:id="dueDate">DueDate</span>
 
 					</td>
 				</tr>
