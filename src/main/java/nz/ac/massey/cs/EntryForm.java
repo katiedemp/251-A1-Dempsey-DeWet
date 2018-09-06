@@ -12,14 +12,19 @@ public class EntryForm extends Form<Void> {
 
     private RequiredTextField nameField;
     private RequiredTextField descriptionField;
+    private RequiredTextField dueDateField;
 
 
     public EntryForm(String id) {
         super(id);
         nameField = new RequiredTextField("name", Model.of(""));
         descriptionField = new RequiredTextField("description", Model.of(""));
+        dueDateField = new RequiredTextField("dueDate", Model.of(""));
+        
         add(nameField);
         add(descriptionField);
+        add(dueDateField);
+        
     }
 
     // adds the task when the form is submitted (by clicking the Add button)
@@ -27,7 +32,10 @@ public class EntryForm extends Form<Void> {
         super.onSubmit();
         String name = (String)nameField.getDefaultModelObject();
         String description = (String)descriptionField.getDefaultModelObject();
-
+        String dueDate = (String)dueDateField.getDefaultModelObject();
+        
+        dueDateField.clearInput();
+        dueDateField.setModelObject(null);
         descriptionField.clearInput();
         descriptionField.setModelObject(null);
         nameField.clearInput();

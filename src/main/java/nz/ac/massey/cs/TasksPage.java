@@ -48,7 +48,8 @@ public class TasksPage extends WebPage {
 
 						item.add(new Label("name"));
 						item.add(new Label("description"));
-
+						item.add(new Label("dueDate"));
+						
 						item.add(new AjaxCheckBox("completed") {
 							@Override
 							protected void onUpdate(AjaxRequestTarget ajaxRequestTarget) {

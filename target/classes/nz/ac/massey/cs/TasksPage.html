@@ -20,9 +20,17 @@
 	<form wicket:id="entryForm">
 		<div><label>Name </label><input
 				wicket:id="name"
-				type="text" style="width: 15em" /></div>
+				type="text" 
+				style="width: 15em" 
+		/></div>
 		<div><label>Description </label><input
-				wicket:id="description" type="text" style="width: 30em"
+				wicket:id="description" 
+				type="text" style="width: 30em" 
+		/></div>
+		<div><label>Due Date </label><input
+				wicket:id="dueDate" 
+				type="text" 
+				style="width: 15em"
 		/></div>
 		<div><input type="submit" value="Add" /></div>
 	</form>
@@ -38,6 +46,7 @@
 				<input class="toggle" type="checkbox" wicket:id="completed" />
 				<span wicket:id="name">Name</span>
 				<span wicket:id="description">Description</span>
+				<span wicket:id="dueDate">DueDate</span>
 
 			</td>
 		</tr>
