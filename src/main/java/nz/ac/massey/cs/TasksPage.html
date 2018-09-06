@@ -40,7 +40,7 @@
    		left: 0;
     	bottom: 0;
     	width: 100%;
-		
+
 	}
 
 	/* Responsive layout */
@@ -73,6 +73,11 @@
 						type="text"
 						style="width: 15em"
 				/></div>
+				<div><label>Project Title </label><input
+						wicket:id="projectTitle"
+						type="text"
+						style="width: 15em"
+				/></div>
 				<div><label>Description </label><input
 						wicket:id="description"
 						type="text" style="width: 30em"
@@ -92,11 +97,13 @@
 
 			<form wicket:id="listForm">
 
+
 			<table>
 				<tr wicket:id="task_list">
 					<td>
 						<input class="toggle" type="checkbox" wicket:id="completed" />
 						<span wicket:id="name">Name</span>
+						<span wicket:id="projectTitle">projectTitle</span>
 						<span wicket:id="description">Description</span>
 						<span wicket:id="dueDate">DueDate</span>
 

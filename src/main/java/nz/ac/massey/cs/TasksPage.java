@@ -47,6 +47,7 @@ public class TasksPage extends WebPage {
 					protected void populateItem(ListItem item) {
 
 						item.add(new Label("name"));
+						item.add(new Label("projectTitle"));
 						item.add(new Label("description"));
 						item.add(new Label("dueDate"));
 						

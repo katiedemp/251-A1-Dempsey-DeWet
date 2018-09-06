@@ -12,8 +12,10 @@ public class Task implements Serializable {
     private String name;
     private Integer id;
     private Date date;
+
     private String dueDate;
-    
+    private String projectTitle;
+
 
 
     public Task(String name) {
@@ -26,6 +28,9 @@ public class Task implements Serializable {
     }
     public String getDueDate() {
     	return dueDate;
+    }
+    public String getProjectTitle() {
+    	return projectTitle;
     }
     public void setComplete(boolean complete) { completed = complete; }
 }
