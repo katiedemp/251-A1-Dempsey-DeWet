@@ -1,66 +1,122 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+	* {
+	    box-sizing: border-box;
+	}
+	body {
+	    font-family: Arial, Helvetica, sans-serif;
+	}
 
+	/* Header */
+	.header {
+	    background-color: #f1f1f1;
+	    padding: 20px;
+	    text-align: center;
+	    font-size: 25px;
+	}
+	/* Column */
+	.column {
+	    float: left;
+	    width: 50%;
+	    padding: 10px;
+	    height: 300px;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+	    content: "";
+	    display: table;
+	    clear: both;
+	}
+
+	/* Footer */
+	.footer {
+	    background-color: #f1f1f1;
+	    padding: 10px;
+	    text-align: centre;
+	    position: fixed;
+   		left: 0;
+    	bottom: 0;
+    	width: 100%;
+		
+	}
+
+	/* Responsive layout */
+	@media (max-width: 600px) {
+	    .column {
+	        width: 100%;
+	    }
+	}
+	</Style>
 </head>
 
 <body>
 
 <div id="body">
-	<header>
+	<div class="header">
 		<h1>Todos</h1>
-	</header>
+	</div>
 
 	<!--div id="content" wicket:id="contentComponent">content
 	</div-->
 
-	<h2>New Task</h2>
+	<div class="row">
+		<div class="column" style="background-color:#aaa;">
 
+			<h2>New Task</h2>
 
-	<form wicket:id="entryForm">
-		<div><label>Name </label><input
-				wicket:id="name"
-				type="text" 
-				style="width: 15em" 
-		/></div>
-		<div><label>Description </label><input
-				wicket:id="description" 
-				type="text" style="width: 30em" 
-		/></div>
-		<div><label>Due Date </label><input
-				wicket:id="dueDate" 
-				type="text" 
-				style="width: 15em"
-		/></div>
-		<div><input type="submit" value="Add" /></div>
-	</form>
-	<hr>
+			<form wicket:id="entryForm">
+				<div><label>Name </label><input
+						wicket:id="name"
+						type="text"
+						style="width: 15em"
+				/></div>
+				<div><label>Description </label><input
+						wicket:id="description"
+						type="text" style="width: 30em"
+				/></div>
+				<div><label>Due Date </label><input
+						wicket:id="dueDate"
+						type="text"
+						style="width: 15em"
+				/></div>
+				<div><input type="submit" value="Add" /></div>
+			</form>
+	</div>
 
-	<h2>Task List</h2>
+		<div class="column" style="background-color:#bbb;">
 
-	<form wicket:id="listForm">
+			<h2>Task List</h2>
 
-	<table>
-		<tr wicket:id="task_list">
-			<td>
-				<input class="toggle" type="checkbox" wicket:id="completed" />
-				<span wicket:id="name">Name</span>
-				<span wicket:id="description">Description</span>
-				<span wicket:id="dueDate">DueDate</span>
+			<form wicket:id="listForm">
 
-			</td>
-		</tr>
-	</table>
+			<table>
+				<tr wicket:id="task_list">
+					<td>
+						<input class="toggle" type="checkbox" wicket:id="completed" />
+						<span wicket:id="name">Name</span>
+						<span wicket:id="description">Description</span>
+						<span wicket:id="dueDate">DueDate</span>
 
-	</form>
+					</td>
+				</tr>
+			</table>
 
-	<a href="#" wicket:id="selectAll">Select all</a>
+			</form>
 
-	<hr>
-	<footer>
-		<div id="datetime" wicket:id="datetime">
+			<a href="#" wicket:id="selectAll">Select all</a>
+
 		</div>
-	</footer>
+	</div>
+
+	<div class="footer">
+		<p>
+			<div id="datetime" wicket:id="datetime"></div>
+		</p>
+	</div>
+
 
 </div>
 </body>
