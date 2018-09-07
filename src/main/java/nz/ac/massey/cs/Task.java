@@ -19,13 +19,13 @@ public class Task implements Serializable {
 
 
 
-    public Task(String name) {
+    public Task(String name, String dueDate, String projectTitle) {
         this.name = name;
-        this.dueDate = "";
-        this.projectTitle = "";
+        this.dueDate = dueDate;
+        this.projectTitle = projectTitle;
         this.description = "";
         this.completed = false;
-        this.activeTasks = false;
+        this.activeTasks = true;
     }
     public boolean isComplete() {
         return completed;
@@ -33,8 +33,11 @@ public class Task implements Serializable {
     public boolean isActive() {
         return activeTasks;
     }
+    public boolean getActiveTasks() {
+        return activeTasks;
+    }
     public boolean isAllTasks() {
-        return completed;
+        return activeTasks;
     }
     public String getDueDate() {
     	return dueDate;

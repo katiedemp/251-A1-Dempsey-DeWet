@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
@@ -34,11 +35,14 @@ public class TasksPage extends WebPage {
 		Date now = new Date();
 		Label dateTimeLabel = new Label("datetime", now.toString());
 		add(dateTimeLabel);
-
+		
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
 
+		Label countLabel = new Label("count", new PropertyModel(collection, "taskCount"));
+		add(countLabel);
+		
 		PropertyListView taskListView =
 				new PropertyListView("task_list", tasks) {
 					private static final long serialVersionUID = 1L;

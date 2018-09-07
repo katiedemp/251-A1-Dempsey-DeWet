@@ -146,16 +146,17 @@
 		<div class="column" style="background-color:#bbb;">
 
 			<h2>Task List</h2>
-
+			
 			<div class="dropdown">
 				<button type="button" onclick="myFunction()" class="dropbtn"> Filter </button>
 				<div id="myDropdown" class="dropdown-content">
 					<a href="#" wicket:id="completed">Completed</a>
-					<a href="#" wicket:id="active">Active</a>
+					<a href="#" wicket:id="activeTasks">Active Tasks</a>
 					<a href="#" wicket:id="allTasks">All Tasks</a>
 				</div>
 			</div>
-
+			<hr>
+			<p>Check Task as complete: </p>
 			<form wicket:id="listForm">
 			<table>
 				<tr wicket:id="task_list">
@@ -173,7 +174,8 @@
 			</form>
 
 			<a href="#" wicket:id="selectAll">Select all</a>
-
+			Number of tasks: <span id="count" wicket:id="count">
+			</span>
 		</div>
 	</div>
 
