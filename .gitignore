@@ -2,4 +2,4 @@
 ./webapp/target/
 ./webapp/data/
 .DS_Store
-.webapp/.idea
+.webapp/.idea/
