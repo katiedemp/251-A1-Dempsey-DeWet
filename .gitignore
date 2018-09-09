@@ -1,3 +1,4 @@
 .ds_store
 ./webapp/target/
 ./webapp/data/
+.DS_Store
