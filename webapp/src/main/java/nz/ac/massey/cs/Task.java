@@ -11,6 +11,8 @@ public class Task implements Serializable {
     private boolean completed;
     private String name;
     private Integer id;
+    private String projectTitle;
+    private Date date;
 
     public void setDescription(String description) {
         this.description = description;
@@ -32,7 +34,10 @@ public class Task implements Serializable {
         this.date = date;
     }
 
-    private Date date;
+    public void setProjectTitle(String projectTitle) {
+        this.projectTitle = projectTitle;
+    }
+
 
 
     public Task(String name) {
@@ -44,4 +49,5 @@ public class Task implements Serializable {
         return completed;
     }
     public void setComplete(boolean complete) { completed = complete; }
+
 }

@@ -1,55 +1,32 @@
 package nz.ac.massey.cs;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class importTodoFile {
 
+
     public static void main(String args[]) throws IOException {
 
-        String fileName = "/Users/jonathan/Desktop/webapp 4/data/files/alice/Data.md";
-        List<String> list = new ArrayList<>();
-
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-
-            list = stream.collect(Collectors.toList());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        list.forEach(System.out::println);
-
-        String string = "[X] (A) Clean data due:2018-08-10";
-        String[] parts = string.split("\n");
-
-
-        //String to be scanned to find the pattern.
-
-
-
+        String filelines = streamFile_Buffer(new File("/Users/jonathan/Desktop/webapp/data/files/alice/HRApp.md"));
+        String[] lines = filelines.split("\n");
 
         System.out.println("\n");
 
         String projectTitle = null;
-        boolean completed = false;
-        String priority = null;
-        String name = null;
         Date dueDate = null;
         String description ="";
 
-        regex1 regex_ = new regex1(string);
+        regex2 regex_ = new regex2(filelines);
         if (regex_.matchFound()) {
             projectTitle = regex_.returnMatch();
         }
@@ -57,43 +34,32 @@ public class importTodoFile {
             throw new IOException("No project title found");
         }
 
-
+        TaskList importedTaskList = new TaskList();
 
         for (String line : lines) {
             Task task1 = new Task("");
-
-
+            task1.setProjectTitle(projectTitle);
+            String[] parts = line.split(" ");
+            for (String bit : parts) {
+                if (bit.startsWith("#")) {
+                } else if (bit.startsWith("[")) {
+                    if ('X' == bit.charAt(1)) {
+                        task1.setCompleted(true);
+                    } else {
+                        task1.setCompleted(false);
+                    }
+                } else if (bit.startsWith("due:")) {
+                    dueDate = stringDatetoDateObject(bit.substring(4));
+                    task1.setDate(dueDate);
+                } else if (bit.startsWith("(")) {
+                    continue;
+                } else {
+                    description += bit + " ";
+                }
+            }
+            task1.setDescription(description);
+            importedTaskList.addTask(task1);
         }
-        for (String bit :parts) {
-
-
-           if (bit.startsWith("#")) {}
-
-           else if (bit.startsWith("[")) {
-
-               if ('X' == bit.charAt(1)) {
-                   completed = true;
-               }
-               else {completed = false;}
-            }
-
-            else if (bit.startsWith("due:")) {
-                dueDate = stringDatetoDateObject(bit.substring(4));
-            }
-
-            else if (bit.startsWith("(")) {
-                continue;
-            }
-
-            else {
-                description+=bit + " ";
-            }
-
-
-        }
-        System.out.println(completed);
-        System.out.println(description);
-        System.out.println(dueDate);
 
     }
 
@@ -108,34 +74,40 @@ public class importTodoFile {
         return date;
     }
 
+
+ private static String streamFile_Buffer(File file) throws IOException {
+        //From https://stackoverflow.com/questions/326390/how-do-i-create-a-java-string-from-the-contents-of-a-file?answertab=active#tab-top
+        BufferedReader reader = new BufferedReader( new FileReader( file ) );
+        return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+    }
 }
 
-class regex1 {
+class regex2 {
 
     private String line;
 
-    private String pattern = "(# )(.*)";
+    private String pattern = "^(# )(.*)";
 
-    public regex1(String line1) {
+    public regex2(String line1) {
         line = line1;
     }
 
+    Pattern r;
+    Matcher m;
+
     boolean matchFound() {
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(line);
-        if (m.find( )) {
+        r = Pattern.compile(pattern);
+        m = r.matcher(line);
+        if (m.find()) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
     String returnMatch() {
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(line);
         return m.group(2);
 
     }
-
-
 }
+
