@@ -1,4 +1,4 @@
-.ds_store
 /target/
 pom.xml
 /src/test/
+.DS_Store
