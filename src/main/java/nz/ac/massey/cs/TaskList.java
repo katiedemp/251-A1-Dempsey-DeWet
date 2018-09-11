@@ -26,6 +26,7 @@ public class TaskList implements Serializable {
     }
     
     public long getTaskCount() {
-    	return collection.stream().filter(task -> task.getActiveTasks() == true).count();
+    	return collection.stream().filter(task -> task.isComplete() != true).count();
     }
+    
 }

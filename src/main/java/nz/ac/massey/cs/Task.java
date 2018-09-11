@@ -2,6 +2,7 @@ package nz.ac.massey.cs;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 // This class models a Task item
 
@@ -9,14 +10,12 @@ public class Task implements Serializable {
 
     private String description;
     private boolean completed;
-    private boolean activeTasks;
-    private boolean allTasks;
+    private boolean activeTask;
     private String name;
     private String dueDate;
     private Integer id;
     private Date date;
     private String projectTitle;
-
 
 
     public Task(String name, String dueDate, String projectTitle) {
@@ -25,19 +24,13 @@ public class Task implements Serializable {
         this.projectTitle = projectTitle;
         this.description = "";
         this.completed = false;
-        this.activeTasks = true;
+        this.activeTask = true;
     }
     public boolean isComplete() {
         return completed;
     }
     public boolean isActive() {
-        return activeTasks;
-    }
-    public boolean getActiveTasks() {
-        return activeTasks;
-    }
-    public boolean isAllTasks() {
-        return activeTasks;
+        return activeTask;
     }
     public String getDueDate() {
     	return dueDate;
@@ -46,5 +39,6 @@ public class Task implements Serializable {
     	return projectTitle;
     }
     public void setComplete(boolean complete) { completed = complete; }
-    public void setActiveTasks(boolean active) { activeTasks = active; }
+    public void setActiveTask(boolean active) { activeTask = active; }
+	
 }
