@@ -2,7 +2,6 @@ package nz.ac.massey.cs;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 // This class models a Task item
 
@@ -40,5 +39,29 @@ public class Task implements Serializable {
     }
     public void setComplete(boolean complete) { completed = complete; }
     public void setActiveTask(boolean active) { activeTask = active; }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setProjectTitle(String projectTitle) {
+        this.projectTitle = projectTitle;
+    }
 	
 }
