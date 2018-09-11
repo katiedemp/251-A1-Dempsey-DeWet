@@ -39,9 +39,15 @@ public class importTodoFile {
         for (String line : lines) {
             Task task1 = new Task("");
             task1.setProjectTitle(projectTitle);
+            if ( line.charAt(0) ==  '[' ) {
+                line = line.substring(0, 1) + '0' + line.substring(2);
+            }
             String[] parts = line.split(" ");
+            boolean isTaskLine = true;
             for (String bit : parts) {
                 if (bit.startsWith("#")) {
+                    isTaskLine = false;
+                    break;
                 } else if (bit.startsWith("[")) {
                     if ('X' == bit.charAt(1)) {
                         task1.setCompleted(true);
@@ -57,9 +63,13 @@ public class importTodoFile {
                     description += bit + " ";
                 }
             }
-            task1.setDescription(description);
-            importedTaskList.addTask(task1);
+            if (isTaskLine) {
+                 task1.setDescription(description);
+                 importedTaskList.addTask(task1);
+            }
+
         }
+        System.out.println("Hello World");
 
     }
 
