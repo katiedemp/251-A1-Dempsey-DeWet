@@ -93,6 +93,7 @@ public class Start
 		MBeanContainer mBeanContainer = new MBeanContainer(mBeanServer);
 		server.addEventListener(mBeanContainer);
 		server.addBean(mBeanContainer);
+		
 
 		try
 		{
