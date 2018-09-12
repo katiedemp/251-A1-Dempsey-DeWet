@@ -182,6 +182,22 @@ public class TasksPage extends WebPage {
 			}
 		});
 
+        add(new Link<Void>("exportbinary") {
+            @Override
+            public void onClick() {
+                File outputfile
+
+
+            }
+        });
+
+        add(new Link<Void>("importbinary") {
+            @Override
+            public void onClick() {
+
+            }
+        });
+
 		listForm.add(taskListView);
 
 	}
