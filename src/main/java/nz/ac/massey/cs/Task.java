@@ -44,10 +44,6 @@ public class Task implements Serializable {
         this.description = description;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
