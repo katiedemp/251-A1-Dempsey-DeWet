@@ -37,7 +37,7 @@ public class importTodoFile {
         TaskList importedTaskList = new TaskList();
 
         for (String line : lines) {
-            Task task1 = new Task("");
+            Task task1 = new Task("", "", "");
             task1.setProjectTitle(projectTitle);
             if ( line.charAt(0) ==  '[' ) {
                 line = line.substring(0, 1) + '0' + line.substring(2);

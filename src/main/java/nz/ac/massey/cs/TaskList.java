@@ -3,6 +3,9 @@ package nz.ac.massey.cs;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 // list of tasks managed by the web application
 
@@ -29,4 +32,7 @@ public class TaskList implements Serializable {
     	return collection.stream().filter(task -> task.isComplete() != true).count();
     }
     
+    public Stream<Task> getActiveTasksFilter() {
+    	return collection.stream().filter(task -> task.isActive() == true);
+    }
 }
