@@ -2,8 +2,6 @@ package nz.ac.massey.cs;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 // This class models a Task item
 
