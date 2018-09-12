@@ -32,7 +32,4 @@ public class TaskList implements Serializable {
     	return collection.stream().filter(task -> task.isComplete() != true).count();
     }
     
-    public Stream<Task> getActiveTasksFilter() {
-    	return collection.stream().filter(task -> task.isActive() == true);
-    }
 }
