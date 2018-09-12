@@ -49,6 +49,7 @@ public class TasksPage extends WebPage {
 		Label countLabel = new Label("count", new PropertyModel(collection, "taskCount"));
 		add(countLabel);
 		
+		
 		PropertyListView taskListView =
 				new PropertyListView("task_list", tasks) {
 					private static final long serialVersionUID = 1L;
