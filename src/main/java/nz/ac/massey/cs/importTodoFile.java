@@ -51,7 +51,7 @@ public class importTodoFile {
         for (String line : lines) {
             if (line.equals(" ")) {continue;}
             description = "";
-            Task task1 = new Task(name, "", "");
+            Task task1 = new Task(name, "", "", "");
             task1.setProjectTitle(projectTitle);
             if ( line.charAt(0) ==  '[' && line.charAt(1) == ' ' ) {
                 line = line.substring(0, 1) + '0' + line.substring(2);
