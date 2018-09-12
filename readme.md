@@ -23,3 +23,11 @@ The bash script must be run inside data/files
 run the bash script with
 
 > source [path to script]
+
+
+# Video Walktrough
+We made a 3 part video which shows our assignment working. If it doesn't work for you maybe this will be useful
+
+Part 1 - https://youtu.be/Qxjk_pQEhfw
+Part 2 - https://youtu.be/Wxc_oyreEE4
+Part 3 - https://youtu.be/fEUfayFK1Dw
