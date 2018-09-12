@@ -49,7 +49,7 @@ public class EntryForm extends Form<Void> {
 
         WicketApplication app = (WicketApplication) this.getApplication();
         TaskList collection = app.getTaskList();
-        collection.addTask(new Task(name, dueDate, projectTitle));
+        collection.addTask(new Task(name, dueDate, projectTitle, description));
 
     }
 }

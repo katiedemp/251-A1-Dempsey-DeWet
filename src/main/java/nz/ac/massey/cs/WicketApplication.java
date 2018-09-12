@@ -30,10 +30,10 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 		tasks = new TaskList();
-		tasks.addTask(new Task("name1","DueDate1","ProjectTitle"));
-		tasks.addTask(new Task("name2","DueDate1","ProjectTitle"));
-		tasks.addTask(new Task("name3","DueDate1","ProjectTitle"));
-		tasks.addTask(new Task("name4","DueDate1","ProjectTitle"));
+		tasks.addTask(new Task("name1","DueDate1","ProjectTitle","desc"));
+		tasks.addTask(new Task("name2","DueDate1","ProjectTitle","desc"));
+		tasks.addTask(new Task("name3","DueDate1","ProjectTitle","desc"));
+		tasks.addTask(new Task("name4","DueDate1","ProjectTitle","desc"));
 	}
 	//Change
 

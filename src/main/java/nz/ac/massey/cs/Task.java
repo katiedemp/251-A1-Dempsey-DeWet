@@ -17,11 +17,11 @@ public class Task implements Serializable {
     private String projectTitle;
 
 
-    public Task(String name, String dueDate, String projectTitle) {
+    public Task(String name, String dueDate, String projectTitle, String description) {
         this.name = name;
         this.dueDate = dueDate;
         this.projectTitle = projectTitle;
-        this.description = "";
+        this.description = description; 
         this.completed = false;
         this.activeTask = true;
     }
@@ -36,6 +36,9 @@ public class Task implements Serializable {
     }
     public String getProjectTitle() {
     	return projectTitle;
+    }
+    public String getDescription() {
+    	return description;
     }
     public void setComplete(boolean complete) { completed = complete; }
     public void setActiveTask(boolean active) { activeTask = active; }
