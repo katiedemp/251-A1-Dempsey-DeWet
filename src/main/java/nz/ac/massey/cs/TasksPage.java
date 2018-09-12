@@ -89,11 +89,13 @@ public class TasksPage extends WebPage {
 		add(new Link<Void>("clearCompleted") {
 			@Override
 			public void onClick() {
+				List<Task> forRemoval = new ArrayList<Task>();
 				for(Task t: tasks) {
 					if(t.isComplete() == true) {
-						tasks.remove(t);
+						forRemoval.add(t);
 					}
 				}
+				tasks.removeAll(forRemoval);
 			}
 		});
 		

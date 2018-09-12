@@ -36,7 +36,6 @@
 	    background-color: #f1f1f1;
 	    padding: 10px;
 	    text-align: centre;
-	    position: fixed;
    		left: 0;
     	bottom: 0;
     	width: 100%;
@@ -141,6 +140,9 @@
 				/></div>
 				<div><input type="submit" value="Add" /></div>
 			</form>
+			<hr>
+			Environment: <span id="enviro" wicket:id="enviro">
+			</span>
 	</div>
 
 		<div class="column" style="background-color:#bbb;">
@@ -184,6 +186,10 @@
 			<a href="#" wicket:id="activeTasks">Active Tasks Filter </a>
 			<hr>
 			<a href="#" wicket:id="allTasks">All Tasks </a>
+			<hr>
+			<a href="#" wicket:id="exportbinary">Export Binary </a>
+			<hr>
+			<a href="#" wicket:id="importbinary">Import Binary </a>
 		</div>
 	</div>
 
