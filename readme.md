@@ -1,5 +1,6 @@
 # Names and ID
 Jonathan De Wet - 16012408
+
 Katie Dempsey - 15309679
 
 
@@ -16,6 +17,9 @@ Katie Dempsey - 15309679
 
 # Special Folders
 'bash scripting' folder contains the bash script.
+
 The bash script must be run inside data/files
+
 run the bash script with
+
 > source [path to script]
