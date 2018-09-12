@@ -48,7 +48,8 @@ public class TasksPage extends WebPage {
 
 		Label countLabel = new Label("count", new PropertyModel(collection, "taskCount"));
 		add(countLabel);
-		
+		Label enviroLabel = new Label("enviro", getApplication().getConfigurationType().toString());
+		add(enviroLabel);
 		
 		PropertyListView taskListView =
 				new PropertyListView("task_list", tasks) {
