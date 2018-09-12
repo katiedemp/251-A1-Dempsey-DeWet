@@ -87,17 +87,35 @@ public class TasksPage extends WebPage {
 		});
 		
 		add(new Link<Void>("clearCompleted") {
-			@Override
-			public void onClick() {
-				List<Task> forRemoval = new ArrayList<Task>();
-				for(Task t: tasks) {
-					if(t.isComplete() == true) {
-						forRemoval.add(t);
-					}
-				}
-				tasks.removeAll(forRemoval);
-			}
-		});
+            @Override
+            public void onClick() {
+                List<Task> forAdding = new ArrayList<Task>();
+                tasks.addAll(tasksRemove);
+                for(Task t: tasks) {
+                    if(t.isComplete() == true) {
+                        tasksRemove.add(t);
+                    }
+                    else if(t.isComplete() == false)  {
+                        forAdding.add(t);
+                    }
+                    else if(t.isActive() == true) {
+                        forAdding.add(t);
+                    }
+                    else if(t.isActive() == false)  {
+                        tasksRemove.add(t);
+                    }
+                }
+                tasks.removeAll(tasksRemove);
+                tasks.addAll(forAdding);
+                // creating a linkedhashset using the list
+                Set<Task> tasksSet = new LinkedHashSet<Task>(tasks);
+                // remove all the elements from the list
+                tasks.clear();
+                // add all the elements of the set to create a
+                // list with out duplicates
+                tasks.addAll(tasksSet);
+            }
+        });
 		
 		add(new Link<Void>("completedFilter") {
 			@Override
@@ -189,13 +207,20 @@ public class TasksPage extends WebPage {
         add(new Link<Void>("exportbinary") {
             @Override
             public void onClick() {
-                File outputfile = new File("output.bn");
+                File outputfile = new File("tasks.bn");
                 try {
                     FileOutputStream fos = new FileOutputStream(outputfile);
                     ObjectOutputStream oss = new ObjectOutputStream(fos);
                     oss.writeObject(tasks);
-                } catch (FileNotFoundException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
+                }
+
+                File outputfile2 = new File("removedTasks.bn");
+                try {
+                    FileOutputStream fos = new FileOutputStream(outputfile2);
+                    ObjectOutputStream oss = new ObjectOutputStream(fos);
+                    oss.writeObject(tasksRemove);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -207,18 +232,40 @@ public class TasksPage extends WebPage {
         add(new Link<Void>("importbinary") {
             @Override
             public void onClick() {
-                File f = new File("output.bn");
+                //inspiration from https://www.youtube.com/watch?v=qo9S2CeoqQE&pbjreload=10
+                File f = new File("tasks.bn");
                 try {
                     FileInputStream fis = new FileInputStream(f);
                     ObjectInputStream ois = new ObjectInputStream(fis);
                     List<Task> savedTasks = (List<Task>) ois.readObject();
                     tasks.clear();
                     tasks.addAll(savedTasks);
-                } catch (FileNotFoundException e) {
+                } catch (ClassNotFoundException | IOException e) {
                     e.printStackTrace();
+                }
+
+                File f2 = new File("removedTasks.bn");
+                try {
+                    FileInputStream fis = new FileInputStream(f2);
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    List<Task> savedTasks = (List<Task>) ois.readObject();
+                    tasksRemove.clear();
+                    tasksRemove.addAll(savedTasks);
+                } catch (ClassNotFoundException | IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+        add(new Link<Void>("importToDo") {
+            @Override
+            public void onClick() {
+                try {
+                    importTodoFile itf = new importTodoFile();
+                    tasks.addAll(itf.returnTaskList());
                 } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
 
