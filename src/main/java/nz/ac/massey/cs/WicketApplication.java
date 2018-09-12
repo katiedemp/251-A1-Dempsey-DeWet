@@ -35,6 +35,7 @@ public class WicketApplication extends WebApplication
 		tasks.addTask(new Task("name3","DueDate1","ProjectTitle"));
 		tasks.addTask(new Task("name4","DueDate1","ProjectTitle"));
 	}
+	//Change
 
 	public TaskList getTaskList() {
 		return tasks;

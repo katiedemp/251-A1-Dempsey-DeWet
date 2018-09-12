@@ -16,6 +16,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.ResourceReference;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -186,7 +187,16 @@ public class TasksPage extends WebPage {
         add(new Link<Void>("exportbinary") {
             @Override
             public void onClick() {
-                File outputfile
+                File outputfile = new File("output.bn");
+                try {
+                    FileOutputStream fos = new FileOutputStream(outputfile);
+                    ObjectOutputStream oss = new ObjectOutputStream(fos);
+                    oss.writeObject(tasks);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -195,6 +205,21 @@ public class TasksPage extends WebPage {
         add(new Link<Void>("importbinary") {
             @Override
             public void onClick() {
+                File f = new File("output.bn");
+                try {
+                    FileInputStream fis = new FileInputStream(f);
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    List<Task> savedTasks = (List<Task>) ois.readObject();
+                    tasks.clear();
+                    tasks.addAll(savedTasks);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });

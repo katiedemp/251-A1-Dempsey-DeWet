@@ -59,6 +59,9 @@ public class Task implements Serializable {
     public void setProjectTitle(String projectTitle) {
         this.projectTitle = projectTitle;
     }
-    
-	
+
+
+    public void setCompleted(boolean b) {
+        completed = b;
+    }
 }
