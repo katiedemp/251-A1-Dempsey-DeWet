@@ -1,4 +1,6 @@
-/target/
+target/
 pom.xml
 /src/test/
 .DS_Store
+/.idea/
+159251.iml
