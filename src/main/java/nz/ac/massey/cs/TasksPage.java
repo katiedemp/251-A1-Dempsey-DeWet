@@ -89,8 +89,7 @@ public class TasksPage extends WebPage {
 			public void onClick() {
 				for(Task t: tasks) {
 					if(t.isComplete() == true) {
-						t.setComplete(false);
-						t.setActiveTask(true);
+						tasks.remove(t);
 					}
 				}
 			}
@@ -107,6 +106,12 @@ public class TasksPage extends WebPage {
 					}
 					else if(t.isComplete() == false)  {
 						tasksRemove.add(t);
+					}
+					else if(t.isActive() == true) {
+						tasksRemove.add(t);
+					}
+					else if(t.isActive() == false)  {
+						forAdding.add(t);
 					}
 				}
 				tasks.removeAll(tasksRemove);
@@ -127,11 +132,17 @@ public class TasksPage extends WebPage {
 				List<Task> forAdding = new ArrayList<Task>();
 				tasks.addAll(tasksRemove);
 				for(Task t: tasks) {
-					if(t.isActive() == true) {
+					if(t.isComplete() == false) {
 						forAdding.add(t);
 					}
-					else if(t.isActive() == false)  {
+					else if(t.isComplete() == true)  {
 						tasksRemove.add(t);
+					}
+					else if(t.isActive() == false) {
+						tasksRemove.add(t);
+					}
+					else if(t.isActive() == true)  {
+						forAdding.add(t);
 					}
 				}
 				tasks.removeAll(tasksRemove);
@@ -160,6 +171,7 @@ public class TasksPage extends WebPage {
 					}
 				}
 				tasks.addAll(forAdding);
+				
 		        // creating a linkedhashset using the list
 		        Set<Task> tasksSet = new LinkedHashSet<Task>(tasks);
 		        // remove all the elements from the list 
