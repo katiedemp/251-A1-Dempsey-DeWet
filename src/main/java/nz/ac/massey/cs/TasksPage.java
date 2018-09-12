@@ -125,7 +125,6 @@ public class TasksPage extends WebPage {
 			public void onClick() {
 				List<Task> forAdding = new ArrayList<Task>();
 				tasks.addAll(tasksRemove);
-				forAdding.addAll(tasks);
 				for(Task t: tasks) {
 					if(t.isActive() == true) {
 						forAdding.add(t);
@@ -151,7 +150,6 @@ public class TasksPage extends WebPage {
 			public void onClick() {
 				tasks.addAll(tasksRemove);
 				List<Task> forAdding = new ArrayList<Task>();
-				forAdding = tasks;
 				for(Task t: tasks) {
 					if(t.isActive() == true) {
 						forAdding.add(t);
