@@ -18,7 +18,11 @@ import org.apache.wicket.request.resource.ResourceReference;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TasksPage extends WebPage {
 
@@ -40,6 +44,7 @@ public class TasksPage extends WebPage {
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
+		List<Task> tasksRemove = new ArrayList<Task>();
 
 		Label countLabel = new Label("count", new PropertyModel(collection, "taskCount"));
 		add(countLabel);
@@ -59,16 +64,14 @@ public class TasksPage extends WebPage {
 						item.add(new AjaxCheckBox("completed") {
 							@Override
 							protected void onUpdate(AjaxRequestTarget ajaxRequestTarget) {
-								for(Task t: tasks) {
-									t.setComplete(true);
-									t.setActiveTask(false);
-								}
+								
 							}
 							
 						});
 					}
 				};
-
+				
+				
 		add(new Link<Void>("selectAll") {
 			@Override
 			public void onClick() {
@@ -96,93 +99,73 @@ public class TasksPage extends WebPage {
 			@Override
 			public void onClick() {
 				List<Task> forAdding = new ArrayList<Task>();
-				List<Task> forRemoval = new ArrayList<Task>();
+				tasks.addAll(tasksRemove);
 				for(Task t: tasks) {
-					if(t.isComplete() == false) {
-						forRemoval.add(t);
-					}
-					else if(t.isComplete() == true) {
+					if(t.isComplete() == true) {
 						forAdding.add(t);
 					}
-					else if(t.isActive() == false) {
-						forRemoval.add(t);
-					}
-					else if(t.isActive() == true)  {
-						forRemoval.add(t);
+					else if(t.isComplete() == false)  {
+						tasksRemove.add(t);
 					}
 				}
-				tasks.removeAll(forRemoval);
+				tasks.removeAll(tasksRemove);
 				tasks.addAll(forAdding);
-			    for(int i=0;i<tasks.size();i++){
-			        for(int j=i+1;j<tasks.size();j++){
-			            if(tasks.get(i).equals(tasks.get(j))){
-			                tasks.remove(j);
-			                j--;
-			            }
-			        }
-			    }
+		        // creating a linkedhashset using the list
+		        Set<Task> tasksSet = new LinkedHashSet<Task>(tasks);
+		        // remove all the elements from the list 
+		        tasks.clear();
+		        // add all the elements of the set to create a
+		        // list with out duplicates
+		        tasks.addAll(tasksSet);
 			}
 		});
 		
 		add(new Link<Void>("activeTasks") {
 			@Override
 			public void onClick() {
-				List<Task> forRemovalA = new ArrayList<Task>();
-				List<Task> forAddingA = new ArrayList<Task>();
+				List<Task> forAdding = new ArrayList<Task>();
+				tasks.addAll(tasksRemove);
 				for(Task t: tasks) {
-					if(t.isActive() == false) {
-						forRemovalA.add(t);
+					if(t.isActive() == true) {
+						forAdding.add(t);
 					}
-					else if(t.isActive() == true)  {
-						forAddingA.add(t);
-					}
-					else if(t.isComplete() == false) {
-						forAddingA.add(t);
-					}
-					else if(t.isComplete() == true) {
-						forRemovalA.add(t);
+					else if(t.isActive() == false)  {
+						tasksRemove.add(t);
 					}
 				}
-				tasks.removeAll(forRemovalA);
-				tasks.addAll(forAddingA);
-			    for(int i=0;i<tasks.size();i++){
-			        for(int j=i+1;j<tasks.size();j++){
-			            if(tasks.get(i).equals(tasks.get(j))){
-			                tasks.remove(j);
-			                j--;
-			            }
-			        }
-			    }
+				tasks.removeAll(tasksRemove);
+				tasks.addAll(forAdding);
+		        // creating a linkedhashset using the list
+		        Set<Task> tasksSet = new LinkedHashSet<Task>(tasks);
+		        // remove all the elements from the list 
+		        tasks.clear();
+		        // add all the elements of the set to create a
+		        // list with out duplicates
+		        tasks.addAll(tasksSet);
 			}
 		});
 		
 		add(new Link<Void>("allTasks") {
 			@Override
 			public void onClick() {
-				List<Task> forAddingAll = new ArrayList<Task>();
+				tasks.addAll(tasksRemove);
+				List<Task> forAdding = new ArrayList<Task>();
 				for(Task t: tasks) {
+					if(t.isActive() == true) {
+						forAdding.add(t);
+					}
 					if(t.isActive() == false) {
-						forAddingAll.add(t);
-					}
-					else if(t.isActive() == true)  {
-						forAddingAll.add(t);
-					}
-					else if(t.isComplete() == false) {
-						forAddingAll.add(t);
-					}
-					else if(t.isComplete() == true) {
-						forAddingAll.add(t);
+						forAdding.add(t);
 					}
 				}
-				tasks.addAll(forAddingAll);
-			    for(int i=0;i<tasks.size();i++){
-			        for(int j=i+1;j<tasks.size();j++){
-			            if(tasks.get(i).equals(tasks.get(j))){
-			                tasks.remove(j);
-			                j--;
-			            }
-			        }
-			    }
+				tasks.addAll(forAdding);
+		        // creating a linkedhashset using the list
+		        Set<Task> tasksSet = new LinkedHashSet<Task>(tasks);
+		        // remove all the elements from the list 
+		        tasks.clear();
+		        // add all the elements of the set to create a
+		        // list with out duplicates
+		        tasks.addAll(tasksSet);
 			}
 		});
 
@@ -190,9 +173,4 @@ public class TasksPage extends WebPage {
 
 	}
 
-
-	protected void clearComplete(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
 }
